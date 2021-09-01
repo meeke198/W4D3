@@ -1,5 +1,5 @@
 
-
+class Error < StandardError;end
 
 # PHASE 2
 def convert_to_int(str)
@@ -12,19 +12,24 @@ end
 FRUITS = ["apple", "banana", "orange"]
 
 def reaction(maybe_fruit)
-  if FRUITS.include? maybe_fruit
-    puts "OMG, thanks so much for the #{maybe_fruit}!"
-  else 
-    raise StandardError 
-  end 
+  
+      if FRUITS.include?(maybe_fruit)
+        puts "OMG, thanks so much for the #{maybe_fruit}!"
+      else 
+        raise Error.new("It's not a fruit!")
+      end
 end
 
 def feed_me_a_fruit
   puts "Hello, I am a friendly monster. :)"
-
   puts "Feed me a fruit! (Enter the name of a fruit:)"
-  maybe_fruit = gets.chomp
-  reaction(maybe_fruit) 
+  begin 
+    maybe_fruit = gets.chomp
+  rescue Error
+    # if FRUITS.include?(maybe_fruit)
+    reaction(maybe_fruit) 
+    retry
+  end
 end  
 
 # PHASE 4
@@ -47,5 +52,4 @@ class BestFriend
     puts "Hey bestie, I made you a friendship bracelet. It says my name, #{@name}, so you never forget me." 
   end
 end
-
 
