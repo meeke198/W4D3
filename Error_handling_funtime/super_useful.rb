@@ -1,6 +1,11 @@
+
+
+
 # PHASE 2
 def convert_to_int(str)
-  Integer(str)
+  nums = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+
+  Integer(nums.index(str))
 end
 
 # PHASE 3
