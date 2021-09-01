@@ -12,12 +12,11 @@ end
 FRUITS = ["apple", "banana", "orange"]
 
 def reaction(maybe_fruit)
-  
-      if FRUITS.include?(maybe_fruit)
-        puts "OMG, thanks so much for the #{maybe_fruit}!"
-      else 
-        raise Error.new("It's not a fruit!")
-      end
+  if FRUITS.include?(maybe_fruit)
+    puts "OMG, thanks so much for the #{maybe_fruit}!"
+  else 
+    raise Error.new("It's not a fruit!")
+  end
 end
 
 def feed_me_a_fruit
@@ -25,10 +24,14 @@ def feed_me_a_fruit
   puts "Feed me a fruit! (Enter the name of a fruit:)"
   begin 
     maybe_fruit = gets.chomp
-  rescue Error
-    # if FRUITS.include?(maybe_fruit)
     reaction(maybe_fruit) 
-    retry
+  rescue Error => e
+    if maybe_fruit == "coffee"
+      puts "Thanks for the coffee, but you need to give me a fruit"
+      retry
+    else
+      puts e.message
+    end
   end
 end  
 
